@@ -1,4 +1,0 @@
-#!/bin/bash
-
-echo sudo systemctl restart home-assistant &
-systemctl restart home-assistant &
