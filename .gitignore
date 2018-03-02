@@ -1,0 +1,18 @@
+#swap
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+#session
+Session.vim
+#temp
+.netrwhist
+*~
+#auto tag files
+tags 
+
+#logs
+*.log
+OZW_Log.txt
+.HA_VERSION
+
+#home assistant
+/homeassistant/.homeassistant/lib*

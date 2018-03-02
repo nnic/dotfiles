@@ -1,0 +1,5 @@
+#!/bin/bash
+echo multitail ~/.homeassistant/home-assistant.log
+
+multitail ~/.homeassistant/home-assistant.log
+
