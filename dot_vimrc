@@ -19,6 +19,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'alker0/chezmoi.vim'
+Plug 'dense-analysis/ale'
+
 "List Ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
