@@ -131,9 +131,9 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-set backupdir=~/.vim/tmp//,.
-set dir=~/vim/tmp//,.
-set undodir=~/vim/tmp//,.
+set backupdir=~/.local/state/vim/backup//
+set directory=~/.local/state/vim/swap//
+set undodir=~/.local/state/vim/undo/
 
 set number
 
