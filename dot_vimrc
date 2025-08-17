@@ -150,6 +150,9 @@ map <leader>e :NERDTree<CR>
 
 map <leader>b :Buffer<CR>
 map <leader>f :Files<CR>
+map <leader>c :Commands<CR>
+
+map <leader>q :q<CR>
 
 imap jj <Esc>
 imap kk <Esc>
