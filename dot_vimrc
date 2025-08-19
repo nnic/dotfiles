@@ -73,6 +73,7 @@ set laststatus=2
 set noshowmode
 set relativenumber
 
+set hidden
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \}
@@ -183,5 +184,5 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
 "vim-peekaboo
-let j:peekaboo_compact = 0
+let g:peekaboo_compact = 0
 
