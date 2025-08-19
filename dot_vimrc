@@ -183,5 +183,5 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
 "vim-peekaboo
-let g:peekaboo_compact = 0
+let j:peekaboo_compact = 0
 
