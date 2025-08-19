@@ -25,6 +25,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/vim-peekaboo'
+Plug 'vimwiki/vimwiki'
 
 "List Ends here. Plugins become visible to Vim after this call.
 call plug#end()
