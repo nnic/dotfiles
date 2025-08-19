@@ -47,6 +47,11 @@ set expandtab
 nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
 
+inoremap <C-h> <C-w>h
+inoremap <C-j> <C-w>j
+inoremap <C-k> <C-w>k
+inoremap <C-l> <C-w>l
+
 set omnifunc=syntaxcomplete#Complete
 
 " allow backspacing over everything in insert mode
@@ -80,11 +85,6 @@ map Q gq
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
-
-inoremap <C-h> <C-w>h
-inoremap <C-j> <C-w>j
-inoremap <C-k> <C-w>k
-inoremap <C-l> <C-w>l
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
