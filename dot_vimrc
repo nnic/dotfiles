@@ -184,3 +184,4 @@ let g:netrw_winsize = 25
 
 #vim-peekaboo
 let g:peekaboo_compant = 0
+
