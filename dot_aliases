@@ -1,1 +1,9 @@
 alias lvim='NVIM_APPNAME="lazyvim" nvim'
+
+alias ll='ls -lA'
+alias la='ls -A'
+alias l='ls -CF'
+alias cd..='cd ..'
+alias ..='cd ..'
+
+
