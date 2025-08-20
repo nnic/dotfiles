@@ -6,4 +6,4 @@ alias l='ls -CF'
 alias cd..='cd ..'
 alias ..='cd ..'
 
-
+alias cls='clear'
