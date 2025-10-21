@@ -1,0 +1,83 @@
+Import-Module posh-git
+# $GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
+# $GitPromptSettings.DefaultPromptPath.ForegroundColor = '#009688'
+
+$cde = @{
+    CDABLE_VARS     = $true
+    ColorCompletion = $true
+}
+
+# function prompt {
+#     & $GitPromptScriptBlock
+#     $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+#     $isAdmin = $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+#     $host.ui.RawUI.WindowTitle = "$(if($isAdmin) { "A: "} )Powershell $($PSVersionTable.PSVersion)"
+# }
+
+if ((Get-Command "starship" -ErrorAction SilentlyContinue) -eq $null) 
+{ 
+   winget install starship
+}
+
+function Invoke-Starship-TransientFunction {
+  &starship module character
+}
+
+Invoke-Expression (&starship init powershell)
+
+Enable-TransientPrompt
+
+Import-Module DirColors
+Import-Module ZLocation
+Import-Module cd-extras
+Import-Module Get-ChildItemColor
+# Import-Module UsefulScripts
+
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+# Sometimes you enter a command but realize you forgot to do something else first.
+# This binding will let you save that command in the history so you can recall it,
+# but it doesn't actually execute.  It also clears the line with RevertLine so the
+# undo stack is reset - though redo will still reconstruct the command line.
+Set-PSReadLineKeyHandler -Key Alt+w `
+    -BriefDescription SaveInHistory `
+    -LongDescription "Save current line in history but do not execute" `
+    -ScriptBlock {
+    param($key, $arg)
+
+    $line = $null
+    $cursor = $null
+    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
+    [Microsoft.PowerShell.PSConsoleReadLine]::AddToHistory($line)
+    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+}
+
+function New-AliasRepeatable($name, $value) {
+    if (!(Test-Path alias:$name)) {
+        New-Alias -Name $name -Value $value
+    }
+}
+
+New-AliasRepeatable -Name vi -Value 'c:\tools\Neovim\bin\nvim.exe'
+New-AliasRepeatable -Name vim -Value 'c:\tools\Neovim\bin\nvim.exe'
+
+Set-Alias l Get-ChildItemColor -option AllScope
+Set-Alias ls Get-ChildItemColorFormatWide -option AllScope
+
+$shimPath = "$env:USERPROFILE\AppData\Local\mise\shims"
+$currentPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+$newPath = $currentPath + ";" + $shimPath
+[Environment]::SetEnvironmentVariable('Path', $newPath, 'User')
+
+function y {
+    $tmp = (New-TemporaryFile).FullName
+    yazi $args --cwd-file="$tmp"
+    $cwd = Get-Content -Path $tmp -Encoding UTF8
+    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+        Set-Location -LiteralPath (Resolve-Path -LiteralPath $cwd).Path
+    }
+    Remove-Item -Path $tmp
+}
