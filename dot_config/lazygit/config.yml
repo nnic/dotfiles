@@ -1,0 +1,9 @@
+os:
+  editPreset: "vscode"
+promptToReturnFromSubprocess: false # removes "press enter to return to lazygit" popup
+
+git:
+  branchPrefix: "user/nmasters/"
+
+gui:
+  nerdFontsVersion: "3"
