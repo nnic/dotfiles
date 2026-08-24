@@ -1,5 +1,5 @@
 [tools]
 lua-language-server = "latest"
-neovim = "nightly"
+neovim = "latest"
 node = "lts"
 zig = "latest"
