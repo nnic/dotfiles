@@ -2,3 +2,8 @@
 install.sh
 LICENSE
 README.md
+
+{{ if eq .chezmoi.os "windows" }}
+OneDrive/
+{{ end }}
+
