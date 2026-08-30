@@ -3,7 +3,8 @@ install.sh
 LICENSE
 README.md
 
-{{ if eq .chezmoi.os "windows" }}
-OneDrive/
+{{ if eq .chezmoi.os "linux" }}
+OneDrive
+OneDrive/**
 {{ end }}
 
