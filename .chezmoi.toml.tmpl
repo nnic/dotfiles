@@ -40,4 +40,8 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
 [cd]
     command = "pwsh.exe"
     args = ["-NoLogo"]
+
+[interpreters.ps1]
+    command = "pwsh"
+    args = ["-NoLogo", "-ExecutionPolicy", "Bypass", "-File"]
 {{- end }}

@@ -13,7 +13,6 @@ OneDrive/**
 .aliases
 .gitconfig.tmpl
 .vimrc
-.zpreztorc
 .zprofile
 .zsh_plugins.txt
 .zshrc
@@ -25,4 +24,5 @@ install.sh
 {{- else }}
 # lazygit on Linux/macOS reads ~/.config/lazygit/config.yml, not %LOCALAPPDATA%
 AppData/Local/lazygit/config.yml
+setup.ps1
 {{- end }}

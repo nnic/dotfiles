@@ -68,9 +68,13 @@ Set-Alias l Get-ChildItemColor -option AllScope
 Set-Alias ls Get-ChildItemColorFormatWide -option AllScope
 
 $shimPath = "$env:USERPROFILE\AppData\Local\mise\shims"
-$currentPath = [Environment]::GetEnvironmentVariable('Path', 'User')
-$newPath = $currentPath + ";" + $shimPath
-[Environment]::SetEnvironmentVariable('Path', $newPath, 'User')
+$userPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+if ($userPath -notlike "*$shimPath*") {
+    [Environment]::SetEnvironmentVariable('Path', "$userPath;$shimPath", 'User')
+}
+if ($env:Path -notlike "*$shimPath*") {
+    $env:Path += ";$shimPath"
+}
 
 function y {
     $tmp = (New-TemporaryFile).FullName
