@@ -20,4 +20,9 @@ OneDrive/**
 .zsh/
 setup.sh
 install.sh
+# lazygit on Windows reads %LOCALAPPDATA%\lazygit\config.yml, not ~/.config
+.config/lazygit/config.yml
+{{- else }}
+# lazygit on Linux/macOS reads ~/.config/lazygit/config.yml, not %LOCALAPPDATA%
+AppData/Local/lazygit/config.yml
 {{- end }}
