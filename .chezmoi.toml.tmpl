@@ -35,3 +35,9 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [edit]
     apply = true
+
+{{- if eq .chezmoi.os "windows" }}
+[cd]
+    command = "pwsh.exe"
+    args = ["-NoLogo"]
+{{- end }}

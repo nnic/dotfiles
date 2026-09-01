@@ -8,3 +8,17 @@ OneDrive
 OneDrive/**
 {{ end }}
 
+{{- if eq .chezmoi.os "windows" }}
+# Ignore Unix/Linux dotfiles on Windows
+.aliases
+.gitconfig.tmpl
+.vimrc
+.zpreztorc
+.zprofile
+.zsh_plugins.txt
+.zshrc
+.zsh/
+setup.sh
+install.sh
+.config/*
+{{- end }}

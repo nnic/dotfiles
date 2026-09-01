@@ -4,6 +4,10 @@ promptToReturnFromSubprocess: false # removes "press enter to return to lazygit"
 
 git:
   branchPrefix: "user/nmasters/"
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
 
 gui:
   nerdFontsVersion: "3"
+
