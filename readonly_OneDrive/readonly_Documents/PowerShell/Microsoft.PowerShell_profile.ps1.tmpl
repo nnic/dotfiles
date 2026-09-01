@@ -14,9 +14,11 @@ $cde = @{
 #     $host.ui.RawUI.WindowTitle = "$(if($isAdmin) { "A: "} )Powershell $($PSVersionTable.PSVersion)"
 # }
 
+(&mise activate pwsh) | Out-String | Invoke-Expression
+
 if ((Get-Command "starship" -ErrorAction SilentlyContinue) -eq $null) 
 { 
-   winget install starship
+   winget install --id Starship.Starship -e --source winget --accept-package-agreements --accept-source-agreements
 }
 
 function Invoke-Starship-TransientFunction {
@@ -66,15 +68,6 @@ New-AliasRepeatable -Name vim -Value 'c:\tools\Neovim\bin\nvim.exe'
 
 Set-Alias l Get-ChildItemColor -option AllScope
 Set-Alias ls Get-ChildItemColorFormatWide -option AllScope
-
-$shimPath = "$env:USERPROFILE\AppData\Local\mise\shims"
-$userPath = [Environment]::GetEnvironmentVariable('Path', 'User')
-if ($userPath -notlike "*$shimPath*") {
-    [Environment]::SetEnvironmentVariable('Path', "$userPath;$shimPath", 'User')
-}
-if ($env:Path -notlike "*$shimPath*") {
-    $env:Path += ";$shimPath"
-}
 
 function y {
     $tmp = (New-TemporaryFile).FullName

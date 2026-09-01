@@ -1,3 +1,6 @@
+# Re-run this script whenever the mise config changes, so newly added tools get installed:
+# mise config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+
 if (-not (Get-Command mise -ErrorAction SilentlyContinue)) {
     winget install --id jdx.mise -e --source winget
     # Refresh PATH for the current process so the newly installed mise is found

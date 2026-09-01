@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Re-run this script whenever the mise config changes, so newly added tools get installed:
+# mise config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+
 mkdir -p ~/.local/state/vim/{backup,swap,undo}
 
 chsh -s /bin/zsh

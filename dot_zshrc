@@ -15,5 +15,5 @@ source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
 antidote load
 
 
-eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
