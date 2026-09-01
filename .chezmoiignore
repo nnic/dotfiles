@@ -20,5 +20,4 @@ OneDrive/**
 .zsh/
 setup.sh
 install.sh
-.config/*
 {{- end }}
