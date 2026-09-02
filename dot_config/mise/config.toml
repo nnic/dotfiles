@@ -7,3 +7,6 @@ lazygit = "latest"
 delta = "latest"
 github-cli = "latest"
 yazi = "latest"
+
+[settings]
+auto_update = true

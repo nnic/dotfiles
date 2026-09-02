@@ -45,3 +45,15 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
     command = "pwsh"
     args = ["-NoLogo", "-ExecutionPolicy", "Bypass", "-File"]
 {{- end }}
+
+[diff]
+    pager = "delta"
+
+[merge]
+    command = "bcomp"
+    args = [
+        {{ printf "%q" "{{ .Destination }}" }},
+        {{ printf "%q" "{{ .Source }}" }},
+        {{ printf "%q" "{{ .Target }}" }},
+        {{ printf "%q" "{{ .Source }}" }},
+		]
