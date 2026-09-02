@@ -63,8 +63,17 @@ function New-AliasRepeatable($name, $value) {
     }
 }
 
-New-AliasRepeatable -Name vi -Value 'c:\tools\Neovim\bin\nvim.exe'
-New-AliasRepeatable -Name vim -Value 'c:\tools\Neovim\bin\nvim.exe'
+New-AliasRepeatable -Name vi -Value 'nvim'
+New-AliasRepeatable -Name vim -Value 'nvim'
+
+function lvim {
+    $env:NVIM_APPNAME = 'lazyvim'
+    try {
+        nvim @args
+    } finally {
+        Remove-Item Env:\NVIM_APPNAME
+    }
+}
 
 Set-Alias l Get-ChildItemColor -option AllScope
 Set-Alias ls Get-ChildItemColorFormatWide -option AllScope

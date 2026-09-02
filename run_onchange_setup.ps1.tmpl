@@ -1,6 +1,14 @@
 # Re-run this script whenever the mise config changes, so newly added tools get installed:
 # mise config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
 
+# Ensure XDG_CONFIG_HOME points at ~/.config so XDG-aware tools (e.g. Neovim) find
+# the config chezmoi already places there, matching Linux/macOS behavior.
+$xdgConfigHome = Join-Path $env:USERPROFILE '.config'
+if ([Environment]::GetEnvironmentVariable('XDG_CONFIG_HOME', 'User') -ne $xdgConfigHome) {
+    [Environment]::SetEnvironmentVariable('XDG_CONFIG_HOME', $xdgConfigHome, 'User')
+}
+$env:XDG_CONFIG_HOME = $xdgConfigHome
+
 if (-not (Get-Command mise -ErrorAction SilentlyContinue)) {
     winget install --id jdx.mise -e --source winget
     # Refresh PATH for the current process so the newly installed mise is found
