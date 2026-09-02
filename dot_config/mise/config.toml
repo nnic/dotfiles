@@ -7,6 +7,10 @@ lazygit = "latest"
 delta = "latest"
 github-cli = "latest"
 yazi = "latest"
+ripgrep = "latest"
+fzf = "latest"
+zoxide = "latest"
+starship = "latest"
 
 [settings]
 auto_update = true
