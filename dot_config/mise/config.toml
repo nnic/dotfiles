@@ -1,7 +1,7 @@
 [tools]
 lua-language-server = "latest"
 neovim = "latest"
-node = "lts"
+node = { version = "lts", postinstall = "corepack enable" }		
 zig = "latest"
 lazygit = "latest"
 delta = "latest"
