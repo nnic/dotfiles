@@ -11,6 +11,7 @@ ripgrep = "latest"
 fzf = "latest"
 zoxide = "latest"
 starship = "latest"
+lazydocker = "latest"
 
 [settings]
 auto_update = true
