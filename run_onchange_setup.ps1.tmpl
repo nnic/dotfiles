@@ -1,6 +1,8 @@
 # Re-run this script whenever the mise config changes, so newly added tools get installed:
 # mise config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
 
+
+
 # Ensure XDG_CONFIG_HOME points at ~/.config so XDG-aware tools (e.g. Neovim) find
 # the config chezmoi already places there, matching Linux/macOS behavior.
 $xdgConfigHome = Join-Path $env:USERPROFILE '.config'
@@ -20,4 +22,15 @@ if (Get-Command mise -ErrorAction SilentlyContinue) {
 }
 else {
     Write-Host "mise still not found on PATH after install attempt; run 'mise install' manually once it's available." -ForegroundColor Yellow
+}
+
+if (-not (Get-Command BCompare -ErrorAction SilentlyContinue)) {
+    winget install --id ScooterSoftware.BeyondCompare4 -e --source winget
+}
+
+$beyondCompareDir = "$env:ProgramFiles\Beyond Compare 4"
+$userPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+if ((Test-Path $beyondCompareDir) -and ($userPath -notlike "*$beyondCompareDir*")) {
+    [Environment]::SetEnvironmentVariable('Path', "$userPath;$beyondCompareDir", 'User')
+    $env:Path += ";$beyondCompareDir"
 }
