@@ -26,3 +26,4 @@ install.sh
 AppData/Local/lazygit/config.yml
 setup.ps1
 {{- end }}
+install.sh
