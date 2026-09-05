@@ -49,6 +49,7 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
 [diff]
     pager = "delta"
 
+{{- if eq .chezmoi.os "windows" }}
 [merge]
     command = "bcomp"
     args = [
@@ -57,3 +58,13 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
         {{ printf "%q" "{{ .Target }}" }},
         {{ printf "%q" "{{ .Source }}" }},
 		]
+{{- else }}
+[merge]
+    command = "ec"
+    args = [
+        "--base", {{ printf "%q" "{{ .Source }}" }},
+        "--local", {{ printf "%q" "{{ .Destination }}" }},
+        "--remote", {{ printf "%q" "{{ .Target }}" }},
+        "--merged", {{ printf "%q" "{{ .Destination }}" }},
+        ]
+{{- end }}
