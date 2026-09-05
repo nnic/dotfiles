@@ -2,6 +2,67 @@
 # mise config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
 
 
+function Update-UserPathEntry {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$DesiredPath,
+
+        [string[]]$ReplacePaths = @()
+    )
+
+    $userPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+    if (-not $userPath) {
+        $userPath = ''
+    }
+
+    # Normalize entries so comparisons ignore trailing slashes and extra spaces.
+    $normalizePath = {
+        param([string]$path)
+        ($path.Trim()).TrimEnd('\\')
+    }
+
+    $normalizedDesiredPath = & $normalizePath $DesiredPath
+    $normalizedReplacePaths = @($ReplacePaths | ForEach-Object { & $normalizePath $_ })
+    $pathEntries = @($userPath -split ';' | Where-Object { $_ -and $_.Trim() })
+    $updatedEntries = New-Object System.Collections.Generic.List[string]
+    $hasDesiredPath = $false
+
+    foreach ($entry in $pathEntries) {
+        $normalizedEntry = & $normalizePath $entry
+
+        if ($normalizedEntry -in $normalizedReplacePaths) {
+            if (-not $hasDesiredPath) {
+                $updatedEntries.Add($DesiredPath)
+                $hasDesiredPath = $true
+            }
+            continue
+        }
+
+        if ($normalizedEntry -ieq $normalizedDesiredPath) {
+            if (-not $hasDesiredPath) {
+                $updatedEntries.Add($DesiredPath)
+                $hasDesiredPath = $true
+            }
+            continue
+        }
+
+        if (-not ($updatedEntries | Where-Object { (& $normalizePath $_) -ieq $normalizedEntry })) {
+            $updatedEntries.Add($entry)
+        }
+    }
+
+    if ((Test-Path $DesiredPath) -and (-not $hasDesiredPath)) {
+        $updatedEntries.Add($DesiredPath)
+    }
+
+    $updatedUserPath = ($updatedEntries -join ';')
+    if ($updatedUserPath -ne $userPath) {
+        [Environment]::SetEnvironmentVariable('Path', $updatedUserPath, 'User')
+        $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + $updatedUserPath
+    }
+}
+
+
 
 # Ensure XDG_CONFIG_HOME points at ~/.config so XDG-aware tools (e.g. Neovim) find
 # the config chezmoi already places there, matching Linux/macOS behavior.
@@ -24,13 +85,25 @@ else {
     Write-Host "mise still not found on PATH after install attempt; run 'mise install' manually once it's available." -ForegroundColor Yellow
 }
 
-if (-not (Get-Command BCompare -ErrorAction SilentlyContinue)) {
-    winget install --id ScooterSoftware.BeyondCompare4 -e --source winget
+$beyondCompare4ProgramFilesDir = "$env:ProgramFiles\Beyond Compare 4"
+$beyondCompare4LocalDir = Join-Path $env:LOCALAPPDATA 'Programs\Beyond Compare 4'
+$beyondCompare5ProgramFilesDir = "$env:ProgramFiles\Beyond Compare 5"
+$beyondCompare5LocalDir = Join-Path $env:LOCALAPPDATA 'Programs\Beyond Compare 5'
+$beyondCompare5Candidates = @($beyondCompare5LocalDir, $beyondCompare5ProgramFilesDir)
+
+if (-not ($beyondCompare5Candidates | Where-Object { Test-Path $_ })) {
+    winget install --id ScooterSoftware.BeyondCompare5 -e --source winget -h
 }
 
-$beyondCompareDir = "$env:ProgramFiles\Beyond Compare 4"
-$userPath = [Environment]::GetEnvironmentVariable('Path', 'User')
-if ((Test-Path $beyondCompareDir) -and ($userPath -notlike "*$beyondCompareDir*")) {
-    [Environment]::SetEnvironmentVariable('Path', "$userPath;$beyondCompareDir", 'User')
-    $env:Path += ";$beyondCompareDir"
+$beyondCompare5Dir = $beyondCompare5Candidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+if ($beyondCompare5Dir) {
+    Update-UserPathEntry -DesiredPath $beyondCompare5Dir -ReplacePaths @(
+        $beyondCompare4ProgramFilesDir,
+        $beyondCompare4LocalDir,
+        $beyondCompare5ProgramFilesDir,
+        $beyondCompare5LocalDir
+    )
+}
+else {
+    Write-Host "Beyond Compare 5 install directory not found after install attempt; update PATH manually if needed." -ForegroundColor Yellow
 }
