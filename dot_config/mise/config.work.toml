@@ -1,0 +1,50 @@
+
+[tools]
+lua-language-server = "latest"
+neovim = "latest"
+node = { version = "lts", postinstall = "corepack enable" }
+zig = "latest"
+lazygit = "latest"
+delta = "latest"
+github-cli = "latest"
+yazi = "latest"
+ripgrep = "latest"
+fzf = "latest"
+zoxide = "latest"
+starship = "latest"
+
+[settings]
+auto_update = true
+
+[bootstrap.repos]
+"C:/repos/iplicit" = { url = "https://github.com/iplicit/iplicit", branch = "master" }
+"C:/repos/analytics" = { url = "https://github.com/iplicit/analytics", branch = "main" }
+"C:/repos/apps" = { url = "https://github.com/iplicit/apps", branch = "main" }
+"C:/repos/authentication" = { url = "https://github.com/iplicit/authentication", branch = "main" }
+"C:/repos/azurevpnextension" = { url = "https://github.com/iplicit/azurevpnextension", branch = "main" }
+"C:/repos/build-shared" = { url = "https://github.com/iplicit/build-shared", branch = "main" }
+"C:/repos/client-manager" = { url = "https://github.com/iplicit/client-manager", branch = "main" }
+"C:/repos/common" = { url = "https://github.com/iplicit/common", branch = "main" }
+"C:/repos/DatabaseContainers.ApiService" = { url = "https://github.com/iplicit/DatabaseContainers.ApiService", branch = "main" }
+"C:/repos/databases-domains" = { url = "https://github.com/iplicit/databases-domains", branch = "main" }
+"C:/repos/document-analysis" = { url = "https://github.com/iplicit/document-analysis", branch = "main" }
+"C:/repos/email-service" = { url = "https://github.com/iplicit/email-service", branch = "main" }
+"C:/repos/execution-service" = { url = "https://github.com/iplicit/execution-service", branch = "main" }
+"C:/repos/github" = { url = "https://github.com/iplicit/github", branch = "main" }
+"C:/repos/iplicit-components" = { url = "https://github.com/iplicit/iplicit-components", branch = "main" }
+"C:/repos/iplicit-doc" = { url = "https://github.com/iplicit/iplicit-doc", branch = "main" }
+"C:/repos/iplicit-electron" = { url = "https://github.com/iplicit/iplicit-electron", branch = "main" }
+"C:/repos/iplicit-excel" = { url = "https://github.com/iplicit/iplicit-excel", branch = "main" }
+"C:/repos/mobile" = { url = "https://github.com/iplicit/mobile", branch = "main" }
+"C:/repos/mobile-app" = { url = "https://github.com/iplicit/mobile-app", branch = "main" }
+"C:/repos/mobile-service" = { url = "https://github.com/iplicit/mobile-service", branch = "main" }
+"C:/repos/mtd-portal" = { url = "https://github.com/iplicit/mtd-portal", branch = "main" }
+"C:/repos/partner-portal-doc" = { url = "https://github.com/iplicit/partner-portal-doc", branch = "main" }
+"C:/repos/payment-services" = { url = "https://github.com/iplicit/payment-services", branch = "main" }
+"C:/repos/print-agent" = { url = "https://github.com/iplicit/print-agent", branch = "main" }
+"C:/repos/prototype" = { url = "https://github.com/iplicit/prototype", branch = "main" }
+"C:/repos/public-api" = { url = "https://github.com/iplicit/public-api", branch = "main" }
+"C:/repos/qa.automation" = { url = "https://github.com/iplicit/qa.automation", branch = "main" }
+"C:/repos/ServiceDefaults" = { url = "https://github.com/iplicit/ServiceDefaults", branch = "main" }
+"C:/repos/tool-db-sync" = { url = "https://github.com/iplicit/tool-db-sync", branch = "main" }
+"C:/repos/tools" = { url = "https://github.com/iplicit/tools", branch = "main" }

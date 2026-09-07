@@ -92,7 +92,7 @@ $beyondCompare5LocalDir = Join-Path $env:LOCALAPPDATA 'Programs\Beyond Compare 5
 $beyondCompare5Candidates = @($beyondCompare5LocalDir, $beyondCompare5ProgramFilesDir)
 
 if (-not ($beyondCompare5Candidates | Where-Object { Test-Path $_ })) {
-    winget install --id ScooterSoftware.BeyondCompare5 -e --source winget -h
+    winget install --id ScooterSoftware.BeyondCompare.5 -e --source winget -h
 }
 
 $beyondCompare5Dir = $beyondCompare5Candidates | Where-Object { Test-Path $_ } | Select-Object -First 1
