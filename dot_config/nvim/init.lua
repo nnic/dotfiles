@@ -1,44 +1,67 @@
-vim.o.number = true
-vim.o.relativenumber = true
+vim.opt.termguicolors = true
+
+vim.opt.number = true -- line number
+vim.opt.relativenumber = true -- relative line numbers
+vim.opt.cursorline = true -- highlight current line
+vim.opt.wrap = false -- do not wrap lines by default
+vim.opt.scrolloff = 10 -- keep 10 lines above/below cursor
+vim.opt.sidescrolloff = 10 -- keep 10 lines to left/right of cursor
+
+vim.opt.tabstop = 2 -- tabwidth
+vim.opt.shiftwidth = 2 -- indent width
+vim.opt.softtabstop = 2 -- soft tab stop not tabs on tab/backspace
+vim.opt.expandtab = true -- use spaces instead of tabs
+vim.opt.smartindent = true -- smart auto-indent
+vim.opt.autoindent = true -- copy indent from current line
+
+vim.opt.ignorecase = true -- case insensitive search
+vim.opt.smartcase = true -- case sensitive if uppercase in string
+vim.opt.hlsearch = true -- highlight search matches
+vim.opt.incsearch = true -- show matches as you type
+
 vim.o.signcolumn = "yes"
-vim.o.wrap = false
-vim.o.tabstop = 4
+vim.opt.showmatch = true -- highlights matching brackets
+
 vim.o.swapfile = false
 vim.g.mapleader = " "
 vim.o.winborder = "rounded"
 
-vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
-vim.keymap.set('n', '<leader>w', ':write<CR>')
-vim.keymap.set('n', '<leader>q', ':quit<CR>')
+local undodir = vim.fn.expand("~/.vim/undodir")
+if
+	vim.fn.isdirectory(undodir) == 0 -- create undodir if nonexistent
+then
+	vim.fn.mkdir(undodir, "p")
+end
 
-vim.pack.add({
-	{ src = "https://github.com/vague2k/vague.nvim" },
-	{ src = "https://github.com/RRethy/base16-nvim" },
-	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/echasnovski/mini.pick" },
-	{ src = "https://github.com/neovim/nvim-lspconfig" },
-	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
-	--{ src = "https://github.com/saghen/blink.cmp", version = "1.6.0"},
-})
+vim.opt.backup = false -- do not create a backup file
+vim.opt.writebackup = false -- do not write to a backup file
+vim.opt.swapfile = false -- do not create a swapfile
+vim.opt.undofile = true -- do create an undo file
+vim.opt.undodir = undodir -- set the undo directory
+vim.opt.updatetime = 300 -- faster completion
+vim.opt.timeoutlen = 500 -- timeout duration
+vim.opt.ttimeoutlen = 50 -- key code timeout
+vim.opt.autoread = true -- auto-reload changes if outside of neovim
+vim.opt.autowrite = false -- do not auto-save
 
-require "mini.pick".setup()
-require "oil".setup()
---require "blink.cmp".setup({keymap = { preset = 'super-tab'}})
+vim.opt.hidden = true -- allow hidden buffers
+vim.opt.errorbells = false -- no error sounds
+vim.opt.backspace = "indent,eol,start" -- better backspace behaviour
+vim.opt.autochdir = false -- do not autochange directories
+vim.opt.iskeyword:append("-") -- include - in words
+vim.opt.path:append("**") -- include subdirs in search
+vim.opt.selection = "inclusive" -- include last char in selection
+vim.opt.mouse = "a" -- enable mouse support
+vim.opt.clipboard:append("unnamedplus") -- use system clipboard
+vim.opt.modifiable = true -- allow buffer modifications
 
-vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
-vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
-vim.lsp.enable({ "lua_ls" })
-vim.keymap.set('n', '<leader>kd', vim.lsp.buf.format)
-
-vim.cmd("colorscheme base16-tomorrow-night-eighties")
-
-vim.lsp.config("lua_ls", {
-		settings = {
-				Lua = {
-						workspace = {
-								library = vim.api.nvim_get_runtime_file("", true),
-						}
-				}
-		}
-})
+vim.opt.guicursor = {
+  "n-v-c:block",                  -- Normal, visual, command mode: block cursor
+  "i-ci-ve:ver25",                -- Insert, command-line insert, visual exclude: vertical bar (25% width)
+  "r-cr:hor20",                   -- Replace, command-line replace: horizontal bar (20% height)
+  "o:hor50",                      -- Operator pending: horizontal bar (50% height)
+  "a:blinkwait700-blinkoff400-blinkon250", -- All modes blinking behavior
+}
