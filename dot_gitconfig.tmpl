@@ -7,13 +7,15 @@
 	helper = !gh auth git-credential
 {{- end }}
 [user]
-	email = {{ .email }}
-	name = Nic Masters
+    email = {{ .email }}
+    name = Nic Masters
 [credential]
-	helper = manager
+    helper = manager
 
 [core]
     pager = delta
+    fsmonitor = true
+    untrackedCache = true
 
 [interactive]
     diffFilter = delta --color-only
@@ -38,8 +40,41 @@
 [mergetool "bc"]
     path = C:/Program Files/Beyond Compare 5/bcomp.exe
     trustExitCode = true
+
 [diff]
     tool = bc
+
 [difftool "bc"]
     path = C:/Program Files/Beyond Compare 5/bcomp.exe
 {{- end }}
+[column]
+	ui = auto
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+
+[help]
+	autocorrect = prompt
+
+[commit]
+	verbose = true
+
+[rerere]
+	enabled = true
+	autoupdate = true
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+
+[pull]
+	rebase = true
