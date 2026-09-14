@@ -1,6 +1,6 @@
 [tools]
 lua-language-server = "latest"
-neovim = "latest"
+neovim = "nightly"
 node = { version = "lts", postinstall = "corepack enable" }
 zig = "latest"
 lazygit = "latest"
