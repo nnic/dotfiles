@@ -1,7 +1,7 @@
 [tools]
 lua-language-server = "latest"
-neovim = "nightly"
-node = { version = "lts", postinstall = "corepack enable" }
+neovim = "latest"
+node = { version = "lts", postinstall = "corepack enable" }		
 zig = "latest"
 lazygit = "latest"
 delta = "latest"
@@ -13,6 +13,7 @@ zoxide = "latest"
 starship = "latest"
 lazydocker = "latest"
 "github:chojs23/ec" = "latest"
+hunk = "latest"
 
 [settings]
 auto_update = true
