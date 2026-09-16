@@ -1,7 +1,7 @@
 [tools]
 lua-language-server = "latest"
 neovim = "latest"
-node = { version = "lts", postinstall = "corepack enable" }
+node = { version = "lts", postinstall = "corepack enable" }		
 zig = "latest"
 lazygit = "latest"
 delta = "latest"
@@ -28,3 +28,6 @@ auto_update = true
 "brew-cask:font-jetbrains-mono-nerd-font" = "latest"
 "brew-cask:font-fira-code-nerd-font" = "latest"
 "brew-cask:font-caskaydia-cove-nerd-fontfont" = "latest"
+
+[env]
+_.path = ["C:/Users/Nic/AppData/Local/Programs/Beyond Compare 5"]
