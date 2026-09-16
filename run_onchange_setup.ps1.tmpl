@@ -107,3 +107,6 @@ if ($beyondCompare5Dir) {
 else {
     Write-Host "Beyond Compare 5 install directory not found after install attempt; update PATH manually if needed." -ForegroundColor Yellow
 }
+
+# Install Nerd fonts 
+ & ([scriptblock]::Create((iwr 'https://to.loredo.me/Install-NerdFont.ps1'))) -Name cascadia-code, fira-code
