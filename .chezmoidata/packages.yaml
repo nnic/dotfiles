@@ -1,0 +1,8 @@
+packages:
+  darwin:
+    brews:
+     - 'git'
+    casks:
+      - 'font-jetbrains-mono-nerd-font'
+      - 'font-fira-code-nerd-font'
+      - 'font-caskaydia-cove-nerd-font'
