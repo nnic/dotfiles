@@ -6,3 +6,7 @@ packages:
       - 'font-jetbrains-mono-nerd-font'
       - 'font-fira-code-nerd-font'
       - 'font-caskaydia-cove-nerd-font'
+  windows:
+    winget:
+      - 'Git.Git'
+      - 'Microsoft.VisualStudioCode'
