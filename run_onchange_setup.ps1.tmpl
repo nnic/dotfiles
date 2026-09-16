@@ -79,7 +79,7 @@ if (-not (Get-Command mise -ErrorAction SilentlyContinue)) {
 }
 
 if (Get-Command mise -ErrorAction SilentlyContinue) {
-    mise install
+    mise bs
 }
 else {
     Write-Host "mise still not found on PATH after install attempt; run 'mise install' manually once it's available." -ForegroundColor Yellow
@@ -91,9 +91,6 @@ $beyondCompare5ProgramFilesDir = "$env:ProgramFiles\Beyond Compare 5"
 $beyondCompare5LocalDir = Join-Path $env:LOCALAPPDATA 'Programs\Beyond Compare 5'
 $beyondCompare5Candidates = @($beyondCompare5LocalDir, $beyondCompare5ProgramFilesDir)
 
-if (-not ($beyondCompare5Candidates | Where-Object { Test-Path $_ })) {
-    winget install --id ScooterSoftware.BeyondCompare.5 -e --source winget -h
-}
 
 $beyondCompare5Dir = $beyondCompare5Candidates | Where-Object { Test-Path $_ } | Select-Object -First 1
 if ($beyondCompare5Dir) {

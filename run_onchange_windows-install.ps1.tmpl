@@ -1,3 +1,0 @@
-# packages hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
-
-winget install {{ range .packages.windows.winget -}} {{ . | quote }} {{ end }} --silent --accept-package-agreements --accept-source-agreements --no-upgrade --nowarn

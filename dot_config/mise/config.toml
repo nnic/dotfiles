@@ -1,7 +1,7 @@
 [tools]
 lua-language-server = "latest"
 neovim = "latest"
-node = { version = "lts", postinstall = "corepack enable" }		
+node = { version = "lts", postinstall = "corepack enable" }
 zig = "latest"
 lazygit = "latest"
 delta = "latest"
@@ -19,6 +19,12 @@ hunk = "latest"
 auto_update = true
 
 [bootstrap.packages]
+# Windows
 "winget:Git.Git" = "latest"
 "winget:ScooterSoftware.BeyondCompare.5" = "latest"
 "winget:Microsoft.PowerToys" = "latest"
+# Mac
+"brew:git" = "latest"
+"brew-cask:font-jetbrains-mono-nerd-font" = "latest"
+"brew-cask:font-fira-code-nerd-font" = "latest"
+"brew-cask:font-caskaydia-cove-nerd-fontfont" = "latest"
