@@ -3,11 +3,6 @@ install.sh
 LICENSE
 README.md
 
-{{ if eq .chezmoi.os "linux" }}
-OneDrive
-OneDrive/**
-{{ end }}
-
 {{- if eq .chezmoi.os "windows" }}
 # Ignore Unix/Linux dotfiles on Windows
 .aliases
@@ -25,5 +20,7 @@ install.sh
 # lazygit on Linux/macOS reads ~/.config/lazygit/config.yml, not %LOCALAPPDATA%
 AppData/Local/lazygit/config.yml
 setup.ps1
+OneDrive
+OneDrive/**
 {{- end }}
 install.sh
