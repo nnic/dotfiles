@@ -18,16 +18,3 @@ hunk = "latest"
 [settings]
 auto_update = true
 
-[bootstrap.packages]
-# Windows
-"winget:Git.Git" = "latest"
-"winget:ScooterSoftware.BeyondCompare.5" = "latest"
-"winget:Microsoft.PowerToys" = "latest"
-# Mac
-"brew:git" = "latest"
-"brew-cask:font-jetbrains-mono-nerd-font" = "latest"
-"brew-cask:font-fira-code-nerd-font" = "latest"
-"brew-cask:font-caskaydia-cove-nerd-fontfont" = "latest"
-
-# [env]
-# _.path = ["C:/Users/Nic/AppData/Local/Programs/Beyond Compare 5"]
