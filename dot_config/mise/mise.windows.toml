@@ -1,4 +1,0 @@
-[bootstrap.packages]
-"winget:Git.Git" = "latest"
-"winget:ScooterSoftware.BeyondCompare.5" = "latest"
-"winget:Microsoft.PowerToys" = "latest"
