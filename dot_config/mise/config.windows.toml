@@ -2,3 +2,8 @@
 "winget:Git.Git" = "latest"
 "winget:ScooterSoftware.BeyondCompare.5" = "latest"
 "winget:Microsoft.PowerToys" = "latest"
+
+[env]
+_.path = [
+  '$LOCALAPPDATA\Programs\Beyond Compare 5\',
+]
